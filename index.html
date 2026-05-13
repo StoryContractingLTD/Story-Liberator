@@ -225,10 +225,14 @@ html,body{min-height:100vh;background:#EAF4FB;font-family:'Barlow',system-ui,san
 .nav-reset:hover{background:#d0dce8;color:#333}
 .nav-footer{text-align:center;padding:12px;background:linear-gradient(135deg,#004B86,#0061AD);border-radius:12px;margin-top:12px}
 .nav-footer p{color:rgba(255,255,255,.9);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.nav-plan-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:13px 20px;border:none;border-radius:20px;background:linear-gradient(135deg,#1A3A5C,#0061AD);color:white;font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 20px rgba(26,58,92,.28);transition:all .18s ease;position:relative;overflow:hidden}
+.nav-plan-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:13px 20px;border:none;border-radius:20px;background:linear-gradient(135deg,#1A3A5C,#0061AD);color:white;font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 20px rgba(26,58,92,.28);transition:transform .18s ease,box-shadow .18s ease;position:relative;overflow:hidden}
 .nav-plan-btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(26,58,92,.42)}
 .nav-plan-btn::before{content:'';position:absolute;top:-50%;left:-75%;width:50%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:skewX(-20deg);animation:navPlanShimmer 3s 1s ease-in-out infinite}
+.nav-plan-btn-text{background:linear-gradient(90deg,rgba(255,255,255,.55) 0%,#ffffff 50%,rgba(255,255,255,.55) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:navPlanTextSheen 2.8s ease-in-out infinite}
+.nav-plan-btn:hover .nav-plan-btn-text{-webkit-text-fill-color:#ffffff;color:#ffffff;animation:none}
 @keyframes navPlanShimmer{0%{left:-75%}100%{left:150%}}
+@keyframes navPlanTextSheen{0%{background-position:150% 0}100%{background-position:-150% 0}}
+@media (prefers-reduced-motion:reduce){.nav-plan-btn-text{animation:none;-webkit-text-fill-color:#ffffff;color:#ffffff}}
 
 /* Thread banner */
 .thread-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#004B86,#0061AD);border-radius:16px;padding:14px 22px;margin-bottom:24px;position:relative;overflow:hidden}
@@ -3550,7 +3554,7 @@ function buildNavigatorVisual() {
         const diagType = positiveIds.includes(currentId) ? 'positive' : cantDoIds.includes(currentId) ? 'cant-do' : wontDoIds.includes(currentId) ? 'wont-do' : 'positive';
         const planBtn = document.createElement('button');
         planBtn.className = 'nav-plan-btn';
-        planBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Plan your action';
+        planBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span class="nav-plan-btn-text">Click to plan your action</span>';
         planBtn.addEventListener('click', () => {
           // Combine the defined behaviours into a single description for the planner
           let behaviourText = '';
@@ -7779,7 +7783,7 @@ function buildDetailPage(seg, onBack) {
     apDivider.innerHTML = '<div class="ws-divider-line"></div><div class="ws-divider-label"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0061AD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Action Planner</div><div class="ws-divider-line"></div>';
     const apCard = document.createElement('div');
     apCard.className = 'ws-card slide-up delay4';
-    apCard.innerHTML = '<h2>Action Planner</h2><p class="ws-subtitle">Use this planner after running the Performance Navigator above. Your diagnosis will carry forward automatically when you click "Plan your action" at the end of the Navigator, or you can fill it in yourself. Turn the diagnosis into a committed, time-bound plan you can download and act on.</p>';
+    apCard.innerHTML = '<h2>Action Planner</h2><p class="ws-subtitle">Use this planner after running the Performance Navigator above. Your diagnosis will carry forward automatically when you click "Click to plan your action" at the end of the Navigator, or you can fill it in yourself. Turn the diagnosis into a committed, time-bound plan you can download and act on.</p>';
     const apWrap = document.createElement('div');
     apWrap.style.marginTop = '18px';
     apWrap.appendChild(buildActionPlanner());
@@ -12032,7 +12036,7 @@ function buildActionPlanner() {
     .${uid}-ta{min-height:86px;line-height:1.6}
     .${uid}-hint{font-size:11.5px;color:#99aabb;margin-top:4px;font-style:italic;line-height:1.5}
     .${uid}-from-nav{border-radius:12px;padding:13px 16px;margin-bottom:16px;animation:${uid}Fi .35s ease both}
-    .${uid}-from-nav-ey{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:5px}
+    .${uid}-from-nav-ey{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ffffff;opacity:.75;margin-bottom:5px}
     .${uid}-from-nav-label{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:800;color:white;margin-bottom:4px}
     .${uid}-from-nav-action{font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.55}
     .${uid}-diag-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
@@ -12694,10 +12698,10 @@ function buildSensationIntuitionCheck() {
     .${uid}-track{flex:1;height:8px;background:linear-gradient(90deg,#1A3A5C 0%,#a0b4c5 50%,#fa6b02 100%);border-radius:4px;position:relative}
     .${uid}-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:18px;height:18px;border-radius:50%;background:white;border:3px solid #1A3A5C;box-shadow:0 3px 10px rgba(0,0,0,0.18);transition:left .8s cubic-bezier(.34,1.4,.64,1) .15s,border-color .8s ease .15s}
     .${uid}-coach{font-size:14px;color:#445566;line-height:1.65;border-left:3px solid #fa6b02;padding-left:14px;margin-top:6px}
-    .${uid}-pick-row{display:grid;grid-template-columns:80px 1fr 24px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed #e0e8f0;font-size:13px;color:#556677}
+    .${uid}-pick-row{display:grid;grid-template-columns:80px 1fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed #e0e8f0;font-size:13px;color:#556677}
     .${uid}-pick-row:last-child{border-bottom:0}
     .${uid}-pick-num{font-family:"Barlow Condensed",sans-serif;font-weight:800;color:#8fa0b0;letter-spacing:.04em;text-transform:uppercase;font-size:11px}
-    .${uid}-pick-tag{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .${uid}-pick-tag{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;justify-self:end}
     .${uid}-pick-S{background:#1A3A5C;color:white}
     .${uid}-pick-I{background:#fa6b02;color:white}
     @keyframes ${uid}fi { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
