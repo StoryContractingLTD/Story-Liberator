@@ -6,7 +6,7 @@
 <title>Story Liberator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&family=Montserrat:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100vh;background:#EAF4FB;font-family:'Barlow',system-ui,sans-serif;color:#333}
@@ -225,14 +225,10 @@ html,body{min-height:100vh;background:#EAF4FB;font-family:'Barlow',system-ui,san
 .nav-reset:hover{background:#d0dce8;color:#333}
 .nav-footer{text-align:center;padding:12px;background:linear-gradient(135deg,#004B86,#0061AD);border-radius:12px;margin-top:12px}
 .nav-footer p{color:rgba(255,255,255,.9);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.nav-plan-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:13px 20px;border:none;border-radius:20px;background:linear-gradient(135deg,#1A3A5C,#0061AD);color:white;font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 20px rgba(26,58,92,.28);transition:transform .18s ease,box-shadow .18s ease;position:relative;overflow:hidden}
+.nav-plan-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:13px 20px;border:none;border-radius:20px;background:linear-gradient(135deg,#1A3A5C,#0061AD);color:white;font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 20px rgba(26,58,92,.28);transition:all .18s ease;position:relative;overflow:hidden}
 .nav-plan-btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(26,58,92,.42)}
 .nav-plan-btn::before{content:'';position:absolute;top:-50%;left:-75%;width:50%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:skewX(-20deg);animation:navPlanShimmer 3s 1s ease-in-out infinite}
-.nav-plan-btn-text{background:linear-gradient(90deg,rgba(255,255,255,.55) 0%,#ffffff 50%,rgba(255,255,255,.55) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:navPlanTextSheen 2.8s ease-in-out infinite}
-.nav-plan-btn:hover .nav-plan-btn-text{-webkit-text-fill-color:#ffffff;color:#ffffff;animation:none}
 @keyframes navPlanShimmer{0%{left:-75%}100%{left:150%}}
-@keyframes navPlanTextSheen{0%{background-position:150% 0}100%{background-position:-150% 0}}
-@media (prefers-reduced-motion:reduce){.nav-plan-btn-text{animation:none;-webkit-text-fill-color:#ffffff;color:#ffffff}}
 
 /* Thread banner */
 .thread-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#004B86,#0061AD);border-radius:16px;padding:14px 22px;margin-bottom:24px;position:relative;overflow:hidden}
@@ -1247,6 +1243,33 @@ html,body{min-height:100vh;background:#EAF4FB;font-family:'Barlow',system-ui,san
 @media (prefers-reduced-motion: reduce){
   .cs-conn-card,.cs-conn-arrow{animation:none}
 }
+
+/* ============================================================
+   STORY ARCADE: HIGH CHALLENGE • HIGH SUPPORT (hidden easter egg)
+   ============================================================ */
+.story-arcade{position:fixed;inset:0;z-index:100000;opacity:0;transition:opacity .28s ease;display:flex;align-items:center;justify-content:center;font-family:'Press Start 2P',monospace}
+.story-arcade.sa-open{opacity:1}
+.sa-backdrop{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,30,60,.85),rgba(0,0,0,.95));cursor:pointer}
+.sa-cabinet{position:relative;background:linear-gradient(180deg,#0a1a2a 0%,#050d18 100%);border:4px solid #0061AD;border-radius:18px;box-shadow:0 0 0 2px #04101e,0 0 40px rgba(0,97,173,.35),0 30px 80px rgba(0,0,0,.7);padding:18px 18px 14px;display:flex;flex-direction:column;align-items:center;max-width:96vw;max-height:96vh}
+@keyframes saIn{0%{transform:scale(.92) translateY(20px);opacity:0}60%{transform:scale(1.02) translateY(-4px);opacity:1}100%{transform:scale(1) translateY(0);opacity:1}}
+.story-arcade.sa-open .sa-cabinet{animation:saIn .42s cubic-bezier(.5,1.6,.6,1) both}
+.sa-top{display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px;margin-bottom:10px}
+.sa-marquee{font-family:'Press Start 2P',monospace;color:#fa6b02;font-size:11px;letter-spacing:.05em;text-shadow:0 0 8px rgba(250,107,2,.55);animation:saMarquee 2.2s ease-in-out infinite alternate}
+@keyframes saMarquee{from{text-shadow:0 0 4px rgba(250,107,2,.35),0 0 12px rgba(250,107,2,.15)}to{text-shadow:0 0 10px rgba(250,107,2,.75),0 0 22px rgba(250,107,2,.45)}}
+.sa-close{background:transparent;color:rgba(255,255,255,.7);border:2px solid rgba(255,255,255,.3);width:32px;height:32px;font-size:18px;cursor:pointer;border-radius:6px;font-family:'Press Start 2P',monospace;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.sa-close:hover{color:#fff;border-color:#fa6b02}
+.sa-screen{position:relative;background:#04101e;border:3px solid #0061AD;border-radius:6px;overflow:hidden;box-shadow:inset 0 0 80px rgba(0,97,173,.25),inset 0 0 8px rgba(0,0,0,.6)}
+.sa-canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;max-width:min(92vw,480px);max-height:calc(96vh - 120px);height:auto}
+.sa-scanlines{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 2px,rgba(0,0,0,.16) 3px,rgba(0,0,0,.16) 3px);pointer-events:none;mix-blend-mode:multiply}
+.sa-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%);pointer-events:none}
+.sa-touch{display:none;width:100%;margin-top:10px;gap:6px;justify-content:space-between}
+.sa-btn{flex:1;background:rgba(0,97,173,.25);color:#fff;border:2px solid #0061AD;font-family:'Press Start 2P',monospace;font-size:12px;padding:14px 8px;border-radius:6px;cursor:pointer;user-select:none;touch-action:manipulation}
+.sa-btn:active{background:rgba(250,107,2,.35);border-color:#fa6b02}
+.sa-c{color:#fa6b02;border-color:#fa6b02;background:rgba(250,107,2,.15)}
+.sa-s{color:#4d9fea;border-color:#0061AD;background:rgba(0,97,173,.15)}
+.sa-foot{font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,.4);margin-top:8px;letter-spacing:.2em}
+@media (hover:none) and (pointer:coarse){.sa-touch{display:flex}}
+@media (max-width:580px){.sa-cabinet{padding:12px 10px 10px;border-width:3px;border-radius:14px}.sa-marquee{font-size:8px}.sa-touch{display:flex}.sa-foot{font-size:6px}}
 
 </style>
 
@@ -3554,7 +3577,7 @@ function buildNavigatorVisual() {
         const diagType = positiveIds.includes(currentId) ? 'positive' : cantDoIds.includes(currentId) ? 'cant-do' : wontDoIds.includes(currentId) ? 'wont-do' : 'positive';
         const planBtn = document.createElement('button');
         planBtn.className = 'nav-plan-btn';
-        planBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span class="nav-plan-btn-text">Click to plan your action</span>';
+        planBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Plan your action';
         planBtn.addEventListener('click', () => {
           // Combine the defined behaviours into a single description for the planner
           let behaviourText = '';
@@ -6590,6 +6613,24 @@ function buildWheelPage(onOpen) {
 
   page.appendChild(buildHeader());
   page.appendChild(cont);
+
+  // Hidden easter egg: triple-click the Story logo to open the arcade.
+  // Only attached on the wheel page so detail pages stay clean.
+  const _logoEl = page.querySelector('.header .logo');
+  if (_logoEl) {
+    let _saClicks = 0, _saTimer = null;
+    _logoEl.addEventListener('click', function() {
+      _saClicks++;
+      if (_saTimer) clearTimeout(_saTimer);
+      if (_saClicks >= 3) {
+        _saClicks = 0;
+        if (typeof window.openStoryArcade === 'function') window.openStoryArcade();
+      } else {
+        _saTimer = setTimeout(function(){ _saClicks = 0; }, 800);
+      }
+    });
+  }
+
   return page;
 }
 
@@ -7783,7 +7824,7 @@ function buildDetailPage(seg, onBack) {
     apDivider.innerHTML = '<div class="ws-divider-line"></div><div class="ws-divider-label"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0061AD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Action Planner</div><div class="ws-divider-line"></div>';
     const apCard = document.createElement('div');
     apCard.className = 'ws-card slide-up delay4';
-    apCard.innerHTML = '<h2>Action Planner</h2><p class="ws-subtitle">Use this planner after running the Performance Navigator above. Your diagnosis will carry forward automatically when you click "Click to plan your action" at the end of the Navigator, or you can fill it in yourself. Turn the diagnosis into a committed, time-bound plan you can download and act on.</p>';
+    apCard.innerHTML = '<h2>Action Planner</h2><p class="ws-subtitle">Use this planner after running the Performance Navigator above. Your diagnosis will carry forward automatically when you click "Plan your action" at the end of the Navigator, or you can fill it in yourself. Turn the diagnosis into a committed, time-bound plan you can download and act on.</p>';
     const apWrap = document.createElement('div');
     apWrap.style.marginTop = '18px';
     apWrap.appendChild(buildActionPlanner());
@@ -12036,7 +12077,7 @@ function buildActionPlanner() {
     .${uid}-ta{min-height:86px;line-height:1.6}
     .${uid}-hint{font-size:11.5px;color:#99aabb;margin-top:4px;font-style:italic;line-height:1.5}
     .${uid}-from-nav{border-radius:12px;padding:13px 16px;margin-bottom:16px;animation:${uid}Fi .35s ease both}
-    .${uid}-from-nav-ey{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ffffff;opacity:.75;margin-bottom:5px}
+    .${uid}-from-nav-ey{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:5px}
     .${uid}-from-nav-label{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:800;color:white;margin-bottom:4px}
     .${uid}-from-nav-action{font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.55}
     .${uid}-diag-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
@@ -12698,10 +12739,10 @@ function buildSensationIntuitionCheck() {
     .${uid}-track{flex:1;height:8px;background:linear-gradient(90deg,#1A3A5C 0%,#a0b4c5 50%,#fa6b02 100%);border-radius:4px;position:relative}
     .${uid}-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:18px;height:18px;border-radius:50%;background:white;border:3px solid #1A3A5C;box-shadow:0 3px 10px rgba(0,0,0,0.18);transition:left .8s cubic-bezier(.34,1.4,.64,1) .15s,border-color .8s ease .15s}
     .${uid}-coach{font-size:14px;color:#445566;line-height:1.65;border-left:3px solid #fa6b02;padding-left:14px;margin-top:6px}
-    .${uid}-pick-row{display:grid;grid-template-columns:80px 1fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed #e0e8f0;font-size:13px;color:#556677}
+    .${uid}-pick-row{display:grid;grid-template-columns:80px 1fr 24px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed #e0e8f0;font-size:13px;color:#556677}
     .${uid}-pick-row:last-child{border-bottom:0}
     .${uid}-pick-num{font-family:"Barlow Condensed",sans-serif;font-weight:800;color:#8fa0b0;letter-spacing:.04em;text-transform:uppercase;font-size:11px}
-    .${uid}-pick-tag{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;justify-self:end}
+    .${uid}-pick-tag{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
     .${uid}-pick-S{background:#1A3A5C;color:white}
     .${uid}-pick-I{background:#fa6b02;color:white}
     @keyframes ${uid}fi { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
@@ -17013,6 +17054,1389 @@ function generateMotivationPDF(state) {
     document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
   } catch(e) { console.error('Motivation PDF error', e); }
 }
+
+// ============================================================
+//  STORY ARCADE: HIGH CHALLENGE • HIGH SUPPORT
+//  Hidden easter egg (triple-click Story logo on wheel page).
+//  Self-contained module. Exposes only window.openStoryArcade.
+//  Reuses existing getCtx() for audio so it shares the AudioContext.
+// ============================================================
+(function(){
+  'use strict';
+
+  // ---- Config ------------------------------------------------
+  const W = 480, H = 640;
+  const PLAYER_Y = H - 60;
+  const PLAYER_SPEED = 4.2;
+  const SHOT_SPEED = 9;
+  const SHOT_COOLDOWN = 14;
+  const HISCORE_KEY = 'story-arcade-hiscore';
+  const SEEN_TUTORIAL_KEY = 'story-arcade-seen-tutorial';
+
+  const COL = {
+    bg: '#04101e',
+    grid: 'rgba(0,97,173,0.10)',
+    star: 'rgba(255,255,255,0.55)',
+    starDim: 'rgba(255,255,255,0.28)',
+    challenge: '#fa6b02',
+    challengeBright: '#ffb547',
+    support: '#0061AD',
+    supportBright: '#5fa9e8',
+    both: '#9a52d8',
+    bothBright: '#c489f0',
+    text: '#FEFFFF',
+    dim: 'rgba(255,255,255,0.55)',
+    dimmer: 'rgba(255,255,255,0.35)',
+    enabling: '#0061AD',
+    visioning: '#fa6b02',
+    mobilising: '#1A3A5C',
+    developing: '#009FA0',
+    rare: '#FFD700',
+    rareGlow: '#fff3a8',
+    skin: '#f4c89c',
+    eyeDark: '#1a1a1a',
+    leaderHat: '#0061AD',
+    leaderHatHi: '#3a86c8',
+    leaderVest: '#1A3A5C',
+    leaderHiVis: '#e8e72e',
+    leaderHiVisHi: '#fff66e',
+    leaderBoot: '#0a0a0a',
+    leaderPants: '#001f3f',
+    success: '#9aff9a',
+    failure: '#ff7a7a'
+  };
+
+  const NEED = { CHAL:'C', SUPP:'S', BOTH:'B', RARE:'R' };
+
+  const WAVES = [
+    { name:'BE EXPLICIT',
+      sub:'Read each team member. Their need is clear.',
+      total: 10, speed: 0.55, spawnMin: 75, spawnMax: 120,
+      mix: { C:0.4, S:0.4, B:0.2 }, lateBubble: false },
+    { name:'GET TO THE ROOT',
+      sub:'Some needs appear late. Stay observant.',
+      total: 14, speed: 0.78, spawnMin: 55, spawnMax: 95,
+      mix: { C:0.35, S:0.35, B:0.3 }, lateBubble: true },
+    { name:"LIBERATOR'S CHALLENGE",
+      sub:'Mixed needs at pace. Keep the balance.',
+      total: 18, speed: 0.98, spawnMin: 40, spawnMax: 75,
+      mix: { C:0.3, S:0.3, B:0.4 }, lateBubble: true }
+  ];
+
+  // Endless mode: after Wave 3 the wave list cycles back to Wave 1 but
+  // each pass through the loop ("cycle") makes things harder. Speed and
+  // density rise; spawn delays shrink; BOTH-need sprites become more
+  // common; late-bubble behaviour starts from cycle 1 onward.
+  function getWaveSpec(idx) {
+    const baseIdx = idx % WAVES.length;
+    const cycle = Math.floor(idx / WAVES.length); // 0, 1, 2, ...
+    const base = WAVES[baseIdx];
+
+    const speedMult = Math.min(2.4, 1 + cycle * 0.18);
+    const totalMult = Math.min(2.5, 1 + cycle * 0.22);
+    const spawnMult = Math.max(0.4, 1 - cycle * 0.16);
+
+    // Push the mix toward BOTH as cycles increase
+    const baseBoth = base.mix.B;
+    const bothBoost = Math.min(0.4, cycle * 0.08);
+    const newBoth = Math.min(0.7, baseBoth + bothBoost);
+    const remainder = 1 - newBoth;
+    const cShare = base.mix.C / (base.mix.C + base.mix.S);
+    const sShare = base.mix.S / (base.mix.C + base.mix.S);
+
+    return {
+      name: base.name,
+      sub: base.sub,
+      cycle: cycle,
+      total: Math.floor(base.total * totalMult),
+      speed: base.speed * speedMult,
+      spawnMin: Math.max(20, Math.floor(base.spawnMin * spawnMult)),
+      spawnMax: Math.max(35, Math.floor(base.spawnMax * spawnMult)),
+      mix: { C: cShare * remainder, S: sShare * remainder, B: newBoth },
+      lateBubble: base.lateBubble || cycle >= 1
+    };
+  }
+
+  function waveCardDuration() {
+    return (game && game.currentWave && game.currentWave.cycle > 0) ? 110 : 150;
+  }
+
+  // ---- State -------------------------------------------------
+  let canvas, ctx, raf, modal;
+  let hiScore = 0;
+  let seenTutorial = false;
+  try {
+    hiScore = +(localStorage.getItem(HISCORE_KEY) || 0) || 0;
+    seenTutorial = localStorage.getItem(SEEN_TUTORIAL_KEY) === '1';
+  } catch(e){}
+  let game = null;
+  let keys = {};
+  let touchMove = 0;
+  let scene = 'title';
+  let sceneTime = 0;
+  let flashes = [];
+  let particles = [];
+  let stars = [];
+  let demoTeam = null;
+
+  // ---- Audio (uses main getCtx) -------------------------------
+  function tone(freq, dur, type, gain, attack) {
+    try {
+      const c = getCtx(), now = c.currentTime;
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = type || 'square';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0, now);
+      g.gain.linearRampToValueAtTime(gain, now + (attack || 0.005));
+      g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+      o.connect(g); g.connect(c.destination);
+      o.start(now); o.stop(now + dur + 0.02);
+    } catch(e){}
+  }
+  function sweep(f1, f2, dur, type, gain) {
+    try {
+      const c = getCtx(), now = c.currentTime;
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = type || 'square';
+      o.frequency.setValueAtTime(f1, now);
+      o.frequency.exponentialRampToValueAtTime(Math.max(20, f2), now + dur);
+      g.gain.setValueAtTime(0, now);
+      g.gain.linearRampToValueAtTime(gain, now + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+      o.connect(g); g.connect(c.destination);
+      o.start(now); o.stop(now + dur + 0.02);
+    } catch(e){}
+  }
+  function sFire(isC) { tone(isC ? 880 : 523, 0.07, 'square', 0.012); }
+  function sHit()      { sweep(880, 1760, 0.10, 'square', 0.018); }
+  function sLand()     { sweep(660, 990, 0.18, 'sine', 0.022); }
+  function sWrong()    { sweep(440, 110, 0.18, 'sawtooth', 0.018); }
+  function sMissed()   { tone(220, 0.20, 'triangle', 0.016); }
+  function sStart()    {
+    setTimeout(()=>tone(523,0.10,'square',0.018), 0);
+    setTimeout(()=>tone(659,0.10,'square',0.018), 100);
+    setTimeout(()=>tone(784,0.10,'square',0.018), 200);
+    setTimeout(()=>tone(1047,0.18,'square',0.022), 300);
+  }
+  function sWaveStart(){
+    tone(659,0.12,'square',0.020);
+    setTimeout(()=>tone(880,0.18,'square',0.022), 130);
+  }
+  function sGameOver() {
+    setTimeout(()=>tone(523,0.18,'sine',0.020), 0);
+    setTimeout(()=>tone(440,0.18,'sine',0.020), 180);
+    setTimeout(()=>tone(330,0.32,'sine',0.022), 360);
+  }
+  function sBonus() {
+    setTimeout(()=>tone(1047,0.06,'square',0.018), 0);
+    setTimeout(()=>tone(1318,0.06,'square',0.018), 60);
+    setTimeout(()=>tone(1568,0.10,'square',0.020), 120);
+    setTimeout(()=>tone(2093,0.16,'square',0.022), 200);
+  }
+
+  // ---- Stars (parallax background) ----------------------------
+  function initStars() {
+    stars = [];
+    for (let i = 0; i < 50; i++) {
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        speed: 0.15 + Math.random() * 0.45,
+        size: Math.random() < 0.75 ? 1 : 2
+      });
+    }
+  }
+  function updateStars() {
+    for (const s of stars) {
+      s.y += s.speed;
+      if (s.y > H + 4) { s.y = -4; s.x = Math.random() * W; }
+    }
+  }
+
+  // ---- Sprite engine ------------------------------------------
+  // Each sprite is an array of strings. Each char keys into the palette.
+  // '.' = transparent.
+  function spr(rows, x, y, palette, s) {
+    s = s || 3;
+    for (let r = 0; r < rows.length; r++) {
+      const row = rows[r];
+      for (let c = 0; c < row.length; c++) {
+        const k = row.charAt(c);
+        if (k === '.') continue;
+        const col = palette[k];
+        if (!col) continue;
+        ctx.fillStyle = col;
+        ctx.fillRect((x + c*s)|0, (y + r*s)|0, s, s);
+      }
+    }
+  }
+
+  // ---- PLAYER (Story site leader: blue hard hat + hi-vis) -----
+  // 12 cols × 14 rows. At scale 3 = 36 × 42 px.
+  // Palette keys:
+  //   B = hard-hat top   H = hat highlight   O = orange brim
+  //   S = skin           E = eye             M = mouth
+  //   V = vest body      Y = hi-vis stripe   I = hi-vis highlight
+  //   J = trousers       K = boots
+  const PLAYER_FRAMES = [
+    [ // legs together
+      '....BBBB....',
+      '...BHHHHB...',
+      '..BBBBBBBB..',
+      '..OOOOOOOO..',
+      '...SSSSSS...',
+      '...SESSES...',
+      '....SMMS....',
+      '....SSSS....',
+      '..VVVVVVVV..',
+      '.VYYIIYYYYV.',
+      '.VVVVVVVVVV.',
+      '..VV....VV..',
+      '...JJ..JJ...',
+      '...KK..KK...'
+    ],
+    [ // legs apart (walking frame)
+      '....BBBB....',
+      '...BHHHHB...',
+      '..BBBBBBBB..',
+      '..OOOOOOOO..',
+      '...SSSSSS...',
+      '...SESSES...',
+      '....SMMS....',
+      '....SSSS....',
+      '..VVVVVVVV..',
+      '.VYYYYIIYYV.',
+      '.VVVVVVVVVV.',
+      '..VV....VV..',
+      '..JJ....JJ..',
+      '..KK....KK..'
+    ]
+  ];
+  const PAL_PLAYER = {
+    B: COL.leaderHat, H: COL.leaderHatHi, O: COL.challenge,
+    S: COL.skin, E: COL.eyeDark, M: '#a05a4a',
+    V: COL.leaderVest, Y: COL.leaderHiVis, I: COL.leaderHiVisHi,
+    J: COL.leaderPants, K: COL.leaderBoot
+  };
+
+  // ---- TEAM bodies (face + vest + legs, 10 rows × 12 cols) ----
+  // Two frames for walking animation. Palette shares S/E/M/V/Y/I/J/K.
+  const TEAM_BODY_FRAMES = [
+    [
+      '...SSSSSS...',
+      '...SESSES...',
+      '....SMMS....',
+      '....SSSS....',
+      '..VVVVVVVV..',
+      '.VYYYYYYYYV.',
+      '.VVVVVVVVVV.',
+      '..VV....VV..',
+      '...JJ..JJ...',
+      '...KK..KK...'
+    ],
+    [
+      '...SSSSSS...',
+      '...SESSES...',
+      '....SMMS....',
+      '....SSSS....',
+      '..VVVVVVVV..',
+      '.VYYYYYYYYV.',
+      '.VVVVVVVVVV.',
+      '..VV....VV..',
+      '..JJ....JJ..',
+      '..KK....KK..'
+    ]
+  ];
+
+  // ---- Head variations (4 rows × 12 cols) ---------------------
+  const HEADS = {
+    hardHat: [
+      '....BBBB....',
+      '...BHHHHB...',
+      '..BBBBBBBB..',
+      '..OOOOOOOO..'
+    ],
+    hair: [
+      '....BBBB....',
+      '...BBBBBB...',
+      '..BBBBBBBB..',
+      '..BB....BB..'
+    ],
+    cap: [
+      '....BBBB....',
+      '..BBBBBBBB..',
+      '..BBBBBBBBB.',
+      '............'
+    ],
+    bun: [
+      '.....BB.....',
+      '....BBBB....',
+      '...BBBBBB...',
+      '..BBBBBBBB..'
+    ],
+    beanie: [
+      '....HHHH....',
+      '...BBBBBB...',
+      '..BBBBBBBB..',
+      '..BBBBBBBB..'
+    ]
+  };
+
+  // ---- Team types: head + colour palette ----------------------
+  const TEAM_TYPES = [
+    { head: 'hardHat', pal: { B:'#f4d12e', H:'#fff04e', O:'#1A3A5C',
+        S:COL.skin, E:COL.eyeDark, M:'#a05a4a',
+        V:'#3a4a5a', Y:'#e8e72e', I:'#fff66e',
+        J:'#1a2a3a', K:COL.leaderBoot } },
+    { head: 'hardHat', pal: { B:'#d63b3b', H:'#f06a6a', O:'#1A3A5C',
+        S:COL.skin, E:COL.eyeDark, M:'#a05a4a',
+        V:'#3a4a5a', Y:'#e8e72e', I:'#fff66e',
+        J:'#1a2a3a', K:COL.leaderBoot } },
+    { head: 'hardHat', pal: { B:'#f0f0f0', H:'#ffffff', O:'#1A3A5C',
+        S:COL.skin, E:COL.eyeDark, M:'#a05a4a',
+        V:'#3a4a5a', Y:'#e8e72e', I:'#fff66e',
+        J:'#1a2a3a', K:COL.leaderBoot } },
+    { head: 'hair', pal: { B:'#2a1810',
+        S:COL.skin, E:COL.eyeDark, M:'#a05a4a',
+        V:'#5d4ea2', Y:'#a89ce0', I:'#ffffff',
+        J:'#1a1a1a', K:COL.leaderBoot } },
+    { head: 'bun', pal: { B:'#7a3818',
+        S:COL.skin, E:COL.eyeDark, M:'#b55a7a',
+        V:'#a85a8a', Y:'#e29ec4', I:'#ffffff',
+        J:'#1a1a1a', K:COL.leaderBoot } },
+    { head: 'cap', pal: { B:'#0061AD', H:'#0061AD', O:'#003560',
+        S:COL.skin, E:COL.eyeDark, M:'#a05a4a',
+        V:'#01A4AB', Y:'#5fcfd5', I:'#ffffff',
+        J:'#1a1a1a', K:COL.leaderBoot } },
+    { head: 'beanie', pal: { B:'#01A4AB', H:'#0a0a0a',
+        S:COL.skin, E:COL.eyeDark, M:'#a05a4a',
+        V:'#6e4a2a', Y:'#a0734a', I:'#c89868',
+        J:'#1a1a1a', K:COL.leaderBoot } }
+  ];
+
+  // Draw a full team member: head (4 rows) + body (10 rows) = 14 rows total
+  function drawFullSprite(head, bodyFrame, x, y, pal, s) {
+    s = s || 3;
+    spr(head, x, y, pal, s);
+    spr(bodyFrame, x, y + 4*s, pal, s);
+  }
+
+  // ---- Magician rabbit (12 cols × 14 rows) --------------------
+  const BUNNY_FRAMES = [
+    [
+      '...W.....W..',
+      '...W.....W..',
+      '...WW...WW..',
+      '...WW.P.WW..',
+      '....WWWWW...',
+      '...WWWWWWW..',
+      '...WBWWWBW..',
+      '...WWWWWWW..',
+      '...WWPPPWW..',
+      '....WWWWW...',
+      '...HHHHHHH..',
+      '...HHHHHHH..',
+      '..HHHHHHHHH.',
+      '.HHHHHHHHHHH'
+    ],
+    [ // ears tilt
+      '..W......W..',
+      '..W......W..',
+      '..WW....WW..',
+      '..WW..P.WW..',
+      '...WWWWWWW..',
+      '..WWWWWWWWW.',
+      '..WBWWWWWBW.',
+      '..WWWWWWWWW.',
+      '..WWWPPPWW..',
+      '...WWWWWWW..',
+      '...HHHHHHH..',
+      '...HHHHHHH..',
+      '..HHHHHHHHH.',
+      '.HHHHHHHHHHH'
+    ]
+  ];
+  const PAL_BUNNY = { W:'#fafafa', P:'#ff7faa', B:'#1a1a1a', H:'#0a0a0a' };
+
+  // ---- Background --------------------------------------------
+  function drawBackground() {
+    ctx.fillStyle = COL.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    const grd = ctx.createLinearGradient(0, 0, 0, H);
+    grd.addColorStop(0, 'rgba(0,97,173,0.20)');
+    grd.addColorStop(0.5, 'rgba(0,0,0,0)');
+    grd.addColorStop(1, 'rgba(0,75,134,0.10)');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, W, H);
+
+    // stars
+    for (const s of stars) {
+      ctx.fillStyle = s.size === 2 ? COL.star : COL.starDim;
+      ctx.fillRect(s.x|0, s.y|0, s.size, s.size);
+    }
+
+    // grid
+    ctx.strokeStyle = COL.grid;
+    ctx.lineWidth = 1;
+    const step = 32;
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += step) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, H); }
+    for (let y = 0; y <= H; y += step) { ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); }
+    ctx.stroke();
+
+    // pulsing quadrant tints
+    const pulse = 0.78 + Math.sin(sceneTime * 0.03) * 0.18;
+    const r = 110;
+    function corner(x, y, col) {
+      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      const a = Math.floor(85 * pulse).toString(16).padStart(2,'0');
+      g.addColorStop(0, col + a);
+      g.addColorStop(1, col + '00');
+      ctx.fillStyle = g;
+      ctx.fillRect(x - r, y - r, r*2, r*2);
+    }
+    corner(0, 32, COL.enabling);
+    corner(W, 32, COL.visioning);
+    corner(0, H, COL.developing);
+    corner(W, H, COL.mobilising);
+  }
+
+  function drawText(txt, x, y, col, size, align) {
+    ctx.fillStyle = col || COL.text;
+    ctx.font = (size||10) + "px 'Press Start 2P', monospace";
+    ctx.textAlign = align || 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(txt, x, y);
+  }
+
+  function wrap(text, maxChars) {
+    const words = text.split(' ');
+    let line = '', out = [];
+    words.forEach(w => {
+      const t = line ? line + ' ' + w : w;
+      if (t.length > maxChars) { out.push(line); line = w; }
+      else line = t;
+    });
+    if (line) out.push(line);
+    return out;
+  }
+
+  // ---- HUD ---------------------------------------------------
+  function drawHUD() {
+    ctx.fillStyle = 'rgba(0,0,0,0.7)';
+    ctx.fillRect(0, 0, W, 34);
+    ctx.fillStyle = COL.support;
+    ctx.fillRect(0, 32, W, 2);
+
+    drawText('SCORE', 10, 6, COL.dim, 8);
+    drawText(String(game.score).padStart(6,'0'), 10, 18, COL.text, 10);
+
+    drawText('HI', W/2, 6, COL.dim, 8, 'center');
+    drawText(String(Math.max(hiScore, game.score)).padStart(6,'0'), W/2, 18, COL.text, 10, 'center');
+
+    drawText('W' + (game.waveIdx+1), W-10, 6, COL.dim, 8, 'right');
+    // tiny hard-hat icons for lives
+    for (let i = 0; i < game.lives; i++) {
+      const hx = W - 14 - (i+1)*12;
+      ctx.fillStyle = COL.leaderHat;
+      ctx.fillRect(hx + 1, 22, 6, 3);
+      ctx.fillRect(hx, 25, 8, 1);
+      ctx.fillStyle = COL.challenge;
+      ctx.fillRect(hx - 1, 26, 10, 2);
+    }
+  }
+
+  // ---- Bubble (chunkier, more readable) -----------------------
+  function drawBubble(cx, by, need) {
+    let col, brightCol, label;
+    if (need === NEED.CHAL) { col = COL.challenge; brightCol = COL.challengeBright; label = 'C'; }
+    else if (need === NEED.SUPP) { col = COL.support; brightCol = COL.supportBright; label = 'S'; }
+    else { col = COL.both; brightCol = COL.bothBright; label = 'C+S'; }
+
+    const w = label.length > 1 ? 42 : 26;
+    const h = 20;
+    const x = cx - w/2, y = by - h - 5;
+
+    // outer glow
+    ctx.fillStyle = brightCol + '55';
+    ctx.fillRect(x-2, y-1, w+4, h+2);
+    // outer border (bright)
+    ctx.fillStyle = brightCol;
+    ctx.fillRect(x+1, y-1, w-2, h+2);
+    ctx.fillRect(x-1, y+1, w+2, h-2);
+    // inner (main)
+    ctx.fillStyle = col;
+    ctx.fillRect(x+2, y, w-4, h);
+    ctx.fillRect(x, y+2, w, h-4);
+    // tail (pointing down)
+    ctx.fillStyle = brightCol;
+    ctx.fillRect(cx-3, y+h, 6, 2);
+    ctx.fillStyle = col;
+    ctx.fillRect(cx-2, y+h+1, 4, 3);
+    // label
+    drawText(label, cx, y+6, '#fff', 8, 'center');
+  }
+
+  // ---- Player ------------------------------------------------
+  function drawPlayer() {
+    const moving = keys.left || keys.right || touchMove !== 0;
+    const bob = Math.sin(sceneTime * 0.1) * 1;
+    const frame = moving ? ((sceneTime >> 3) & 1) : 0;
+    // shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.35)';
+    ctx.fillRect((game.player.x - 14)|0, (PLAYER_Y + 2)|0, 28, 3);
+    spr(PLAYER_FRAMES[frame], game.player.x - 18, PLAYER_Y - 42 + bob, PAL_PLAYER, 3);
+  }
+
+  // ---- Team --------------------------------------------------
+  function drawTeam(t) {
+    const type = TEAM_TYPES[t.typeIdx];
+    const head = HEADS[type.head];
+    const body = TEAM_BODY_FRAMES[t.animFrame];
+    const yOff = Math.sin(t.animPhase) * 0.8;
+
+    // shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.25)';
+    ctx.fillRect((t.x - 14)|0, (t.y + 22)|0, 28, 2);
+
+    drawFullSprite(head, body, t.x - 18, t.y - 21 + yOff, type.pal, 3);
+
+    // BOTH progress indicator (small filled bar showing which side done)
+    if (t.need === NEED.BOTH && (t.hit.C || t.hit.S)) {
+      const done = t.hit.C ? 'C' : 'S';
+      const col = done === 'C' ? COL.challenge : COL.support;
+      ctx.fillStyle = col;
+      ctx.fillRect(t.x - 10, t.y + 26, 20, 3);
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(t.x - 10, t.y + 26, 10, 3);
+      drawText(done + ' OK', t.x, t.y + 32, '#fff', 6, 'center');
+    }
+
+    const show = !t.lateBubble || t.bubbleShown;
+    if (show) {
+      drawBubble(t.x, t.y - 24, t.need);
+    } else {
+      // pulsing "?" hint
+      const a = 0.35 + Math.sin(sceneTime * 0.15) * 0.25;
+      ctx.fillStyle = 'rgba(255,255,255,' + a.toFixed(2) + ')';
+      ctx.font = "13px 'Press Start 2P', monospace";
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText('?', t.x, t.y - 36);
+    }
+  }
+
+  // ---- Shots & particles -------------------------------------
+  function drawShot(s) {
+    const col = s.kind === 'C' ? COL.challenge : COL.support;
+    const bright = s.kind === 'C' ? COL.challengeBright : COL.supportBright;
+    // trailing afterimage
+    for (let i = 0; i < 4; i++) {
+      const ty = s.y + i * 5;
+      ctx.globalAlpha = (1 - i * 0.22) * 0.5;
+      ctx.fillStyle = col;
+      ctx.fillRect(s.x - 2, ty - 6 + i, 4, 9 - i*2);
+    }
+    ctx.globalAlpha = 1;
+    // body
+    ctx.fillStyle = col;
+    ctx.fillRect(s.x - 3, s.y - 9, 6, 13);
+    // bright core
+    ctx.fillStyle = bright;
+    ctx.fillRect(s.x - 1, s.y - 9, 2, 13);
+    // tip
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(s.x - 1, s.y - 11, 2, 3);
+  }
+
+  function spawnBurst(x, y, col, count) {
+    count = count || 12;
+    for (let i = 0; i < count; i++) {
+      const a = (i / count) * Math.PI * 2 + Math.random() * 0.3;
+      const sp = 1.5 + Math.random() * 2.5;
+      particles.push({
+        x, y,
+        vx: Math.cos(a) * sp,
+        vy: Math.sin(a) * sp,
+        life: 28 + Math.random() * 12,
+        maxLife: 36,
+        col,
+        size: 2 + (Math.random() < 0.35 ? 1 : 0),
+        gravity: true
+      });
+    }
+  }
+
+  function spawnSparkles(x, y, col, count) {
+    count = count || 6;
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: x + (Math.random() - 0.5) * 22,
+        y: y + (Math.random() - 0.5) * 22,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: -0.8 - Math.random() * 1.4,
+        life: 28 + Math.random() * 22,
+        maxLife: 50,
+        col,
+        size: 2,
+        sparkle: true
+      });
+    }
+  }
+
+  function updateParticles() {
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.gravity) {
+        p.vy += 0.11;
+        p.vx *= 0.96;
+      }
+      p.life--;
+      if (p.life <= 0) particles.splice(i, 1);
+    }
+  }
+
+  function drawParticles() {
+    for (const p of particles) {
+      const a = p.life / p.maxLife;
+      ctx.globalAlpha = Math.max(0, Math.min(1, a));
+      ctx.fillStyle = p.col;
+      const sz = p.sparkle && (p.life % 4 < 2) ? p.size + 1 : p.size;
+      ctx.fillRect(p.x|0, p.y|0, sz, sz);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // ---- Game logic --------------------------------------------
+  function newGame() {
+    game = {
+      player: { x: W/2 },
+      shots: [],
+      team: [],
+      waveIdx: 0,
+      currentWave: getWaveSpec(0),
+      score: 0,
+      lives: 3,
+      cooldown: 0,
+      spawned: 0,
+      correct: 0,
+      missed: 0,
+      wrongChal: 0,
+      wrongSupp: 0,
+      spawnTimer: 90,
+      bunnySpawned: false,
+      bunnyTimer: 0,
+      cardTime: 0,
+      rank: '',
+      newHi: false
+    };
+    flashes = [];
+    particles = [];
+  }
+
+  function pickNeed(mix) {
+    const r = Math.random();
+    let s = 0;
+    for (const k of Object.keys(mix)) {
+      s += mix[k];
+      if (r < s) return k;
+    }
+    return NEED.CHAL;
+  }
+
+  function spawnTeam() {
+    const wave = game.currentWave;
+    game.team.push({
+      x: 36 + Math.random() * (W - 72),
+      y: 8,
+      vy: wave.speed + Math.random() * 0.25,
+      need: pickNeed(wave.mix),
+      hit: { C:false, S:false },
+      state: 'descend',
+      lateBubble: !!wave.lateBubble && Math.random() < 0.55,
+      bubbleShown: false,
+      bubbleTimer: 70 + Math.random() * 120,
+      typeIdx: Math.floor(Math.random() * TEAM_TYPES.length),
+      animFrame: 0,
+      animTimer: Math.floor(Math.random() * 16),
+      animPhase: Math.random() * Math.PI * 2,
+      leaveT: 0,
+      isBunny: false
+    });
+    game.spawned++;
+  }
+
+  function spawnBunny() {
+    game.team.push({
+      x: 40 + Math.random() * (W - 80),
+      y: 0,
+      vy: 0.5 + Math.random() * 0.2,
+      need: NEED.RARE,
+      hit: { C:false, S:false },
+      state: 'descend',
+      lateBubble: false, bubbleShown: true, bubbleTimer: 0,
+      isBunny: true,
+      typeIdx: 0,
+      animFrame: 0, animTimer: 0,
+      animPhase: 0,
+      leaveT: 0,
+      wob: Math.random() * Math.PI * 2
+    });
+    game.bunnySpawned = true;
+  }
+
+  function firePlayer(kind) {
+    if (game.cooldown > 0) return;
+    game.shots.push({ x: game.player.x, y: PLAYER_Y - 36, kind });
+    game.cooldown = SHOT_COOLDOWN;
+    sFire(kind === 'C');
+    // muzzle flash particles
+    const col = kind === 'C' ? COL.challengeBright : COL.supportBright;
+    for (let i = 0; i < 4; i++) {
+      particles.push({
+        x: game.player.x + (Math.random()-0.5)*8,
+        y: PLAYER_Y - 36,
+        vx: (Math.random()-0.5)*1.2,
+        vy: -1 - Math.random(),
+        life: 8, maxLife: 8,
+        col, size: 2
+      });
+    }
+  }
+
+  function addFlash(x, y, col, text) {
+    flashes.push({ x, y, life: 40, maxLife: 40, col, text: text || '' });
+  }
+
+  function update() {
+    sceneTime++;
+    updateStars();
+    updateParticles();
+
+    if (scene === 'title') {
+      if (demoTeam) {
+        demoTeam.y += 0.9;
+        demoTeam.animTimer++;
+        if (demoTeam.animTimer > 16) {
+          demoTeam.animTimer = 0;
+          demoTeam.animFrame = 1 - demoTeam.animFrame;
+        }
+        demoTeam.animPhase += 0.08;
+        if (demoTeam.y > 470) {
+          demoTeam.y = 220;
+          demoTeam.typeIdx = (demoTeam.typeIdx + 1) % TEAM_TYPES.length;
+          demoTeam.need = ['C','S','B'][Math.floor(Math.random()*3)];
+        }
+      }
+      return;
+    }
+
+    if (scene === 'tutorial' || scene === 'gameover') return;
+
+    if (scene === 'wavecard') {
+      game.cardTime++;
+      if (game.cardTime > waveCardDuration()) { scene = 'play'; sWaveStart(); }
+      return;
+    }
+
+    // ---- PLAY ----
+    let dx = 0;
+    if (keys.left)  dx -= 1;
+    if (keys.right) dx += 1;
+    dx += touchMove;
+    game.player.x += dx * PLAYER_SPEED;
+    game.player.x = Math.max(22, Math.min(W - 22, game.player.x));
+
+    if (game.cooldown > 0) game.cooldown--;
+
+    for (let i = game.shots.length - 1; i >= 0; i--) {
+      game.shots[i].y -= SHOT_SPEED;
+      if (game.shots[i].y < -14) game.shots.splice(i, 1);
+    }
+
+    game.spawnTimer--;
+    if (game.spawnTimer <= 0 && game.spawned < game.currentWave.total) {
+      spawnTeam();
+      const w = game.currentWave;
+      game.spawnTimer = w.spawnMin + Math.random() * (w.spawnMax - w.spawnMin);
+    }
+
+    if (!game.bunnySpawned && game.waveIdx >= 1) {
+      game.bunnyTimer++;
+      if (game.bunnyTimer > 240 && Math.random() < 0.0025) spawnBunny();
+    }
+
+    for (let i = game.team.length - 1; i >= 0; i--) {
+      const t = game.team[i];
+
+      if (t.state === 'happy') {
+        t.leaveT++;
+        t.y -= 2 + t.leaveT * 0.12;
+        if (Math.random() < 0.35) {
+          spawnSparkles(t.x + (Math.random()-0.5)*30,
+                        t.y + (Math.random()-0.5)*30,
+                        COL.success, 1);
+        }
+        if (t.y < -40 || t.leaveT > 60) game.team.splice(i, 1);
+        continue;
+      }
+      if (t.state === 'fade') {
+        t.leaveT++;
+        if (t.leaveT > 32) game.team.splice(i, 1);
+        continue;
+      }
+
+      t.y += t.vy;
+      t.animTimer++;
+      if (t.animTimer > 16) { t.animTimer = 0; t.animFrame = 1 - t.animFrame; }
+      t.animPhase += 0.08;
+
+      if (t.isBunny) {
+        t.wob += 0.16;
+        t.x += Math.sin(t.wob) * 1.5;
+        if (Math.random() < 0.4) {
+          spawnSparkles(t.x + (Math.random()-0.5)*36,
+                        t.y + (Math.random()-0.5)*36,
+                        COL.rare, 1);
+        }
+      }
+      if (t.lateBubble && !t.bubbleShown) {
+        t.bubbleTimer--;
+        if (t.bubbleTimer <= 0) {
+          t.bubbleShown = true;
+          // little pop when bubble reveals
+          tone(880, 0.06, 'sine', 0.014);
+        }
+      }
+
+      for (let j = game.shots.length - 1; j >= 0; j--) {
+        const s = game.shots[j];
+        if (Math.abs(s.x - t.x) < 20 && Math.abs(s.y - t.y) < 24) {
+          game.shots.splice(j, 1);
+          handleHit(t, s.kind);
+          break;
+        }
+      }
+
+      if (t.y > PLAYER_Y - 8 && t.state === 'descend') {
+        if (t.isBunny) {
+          game.team.splice(i, 1);
+          continue;
+        }
+        game.missed++;
+        t.state = 'fade';
+        t.leaveT = 0;
+        game.lives--;
+        sMissed();
+        addFlash(t.x, t.y - 12, COL.failure, 'MISSED');
+        spawnBurst(t.x, t.y - 4, COL.dimmer, 8);
+        if (game.lives <= 0) { endGame(); return; }
+      }
+    }
+
+    for (let i = flashes.length - 1; i >= 0; i--) {
+      flashes[i].life--;
+      if (flashes[i].life <= 0) flashes.splice(i, 1);
+    }
+
+    if (game.spawned >= game.currentWave.total &&
+        game.team.filter(t => t.state === 'descend').length === 0) {
+      // Endless mode: keep cycling. Each new wave gets harder via getWaveSpec.
+      game.waveIdx++;
+      game.currentWave = getWaveSpec(game.waveIdx);
+      game.spawned = 0;
+      game.spawnTimer = 120;
+      game.cardTime = 0;
+      // Give the magician another rare chance every time we complete a full
+      // pass through the three wave types (so once every three waves).
+      if (game.waveIdx % WAVES.length === 0) {
+        game.bunnySpawned = false;
+        game.bunnyTimer = 0;
+      }
+      scene = 'wavecard';
+    }
+  }
+
+  function handleHit(t, kind) {
+    if (t.isBunny) {
+      game.score += 500;
+      addFlash(t.x, t.y, COL.rare, '+500 BONUS');
+      spawnBurst(t.x, t.y, COL.rare, 18);
+      spawnSparkles(t.x, t.y, COL.rareGlow, 10);
+      t.state = 'happy'; t.leaveT = 0;
+      sBonus();
+      return;
+    }
+    const n = t.need;
+    if (n === NEED.BOTH) {
+      t.hit[kind] = true;
+      if (t.hit.C && t.hit.S) {
+        game.score += 200;
+        game.correct++;
+        addFlash(t.x, t.y, COL.success, '+200');
+        spawnBurst(t.x, t.y, COL.success, 16);
+        t.state = 'happy'; t.leaveT = 0;
+        sLand();
+      } else {
+        game.score += 50;
+        addFlash(t.x, t.y, COL.text, '+50');
+        spawnBurst(t.x, t.y, kind === 'C' ? COL.challenge : COL.support, 8);
+        sHit();
+      }
+      return;
+    }
+    if ((n === NEED.CHAL && kind === 'C') || (n === NEED.SUPP && kind === 'S')) {
+      game.score += 100;
+      game.correct++;
+      addFlash(t.x, t.y, COL.success, '+100');
+      spawnBurst(t.x, t.y, COL.success, 14);
+      t.state = 'happy'; t.leaveT = 0;
+      sLand();
+    } else {
+      game.score = Math.max(0, game.score - 50);
+      if (kind === 'C') game.wrongChal++;
+      else game.wrongSupp++;
+      addFlash(t.x, t.y, COL.failure, '-50 WRONG');
+      spawnBurst(t.x, t.y, COL.failure, 10);
+      t.state = 'fade'; t.leaveT = 0;
+      sWrong();
+    }
+  }
+
+  function endGame() {
+    scene = 'gameover';
+    sceneTime = 0;
+
+    // Wrong-shot threshold scales with how much the player got right, so
+    // a small number of slips in a long run doesn't unfairly label them.
+    const wrongThreshold = Math.max(3, Math.floor(game.correct * 0.15));
+    let rank;
+    if (game.missed > game.correct) rank = 'ABDICATOR';
+    else if (game.wrongChal > game.wrongSupp && game.wrongChal >= wrongThreshold) rank = 'TORMENTOR';
+    else if (game.wrongSupp > game.wrongChal && game.wrongSupp >= wrongThreshold) rank = 'PATRONISER';
+    else rank = 'LIBERATOR';
+    game.rank = rank;
+
+    if (game.score > hiScore) {
+      hiScore = game.score;
+      game.newHi = true;
+      try { localStorage.setItem(HISCORE_KEY, String(hiScore)); } catch(e){}
+    }
+
+    // Leaderboard hookup: dispatch a CustomEvent so external code (a future
+    // high-scores page or database integration) can listen and record the
+    // result without this module needing to know about it.
+    try {
+      window.dispatchEvent(new CustomEvent('storyArcadeGameOver', {
+        detail: {
+          score: game.score,
+          rank: game.rank,
+          wavesReached: game.waveIdx + 1,
+          cycles: Math.floor(game.waveIdx / WAVES.length) + 1,
+          correct: game.correct,
+          missed: game.missed,
+          wrongChallenge: game.wrongChal,
+          wrongSupport: game.wrongSupp,
+          newHighScore: !!game.newHi,
+          previousHighScore: hiScore,
+          when: new Date().toISOString()
+        }
+      }));
+    } catch(e) {}
+
+    sGameOver();
+  }
+
+  // ---- Render ------------------------------------------------
+  function render() {
+    drawBackground();
+    if (scene === 'title')    return drawTitle();
+    if (scene === 'tutorial') return drawTutorial();
+    if (scene === 'wavecard') return drawWaveCard();
+    if (scene === 'gameover') return drawGameOver();
+
+    // play scene
+    drawParticles();
+    for (const t of game.team) {
+      ctx.save();
+      if (t.state === 'fade')  ctx.globalAlpha = Math.max(0, 1 - (t.leaveT/32));
+      if (t.state === 'happy') ctx.globalAlpha = Math.max(0, 1 - (t.leaveT/60));
+      if (t.isBunny) {
+        const bunnyBob = Math.sin(t.wob*2) * 2;
+        // bunny is 12 cols × 14 rows → 36 × 42
+        spr(BUNNY_FRAMES[t.animFrame], t.x - 18, t.y - 21 + bunnyBob, PAL_BUNNY, 3);
+      } else {
+        drawTeam(t);
+      }
+      ctx.restore();
+    }
+    for (const s of game.shots) drawShot(s);
+    drawPlayer();
+    for (const f of flashes) {
+      ctx.save();
+      const a = Math.max(0, f.life/f.maxLife);
+      ctx.globalAlpha = a;
+      const yOff = (1-a) * 24;
+      drawText(f.text, f.x, f.y - 30 - yOff, f.col, 9, 'center');
+      ctx.restore();
+    }
+    drawHUD();
+
+    // Wave-1 control hint (helpful first time)
+    if (game.waveIdx === 0 && game.spawned <= 3) {
+      ctx.save();
+      ctx.globalAlpha = 0.45 + Math.sin(sceneTime*0.1)*0.2;
+      drawText('C = CHALLENGE   S = SUPPORT', W/2, H - 20, COL.dim, 8, 'center');
+      ctx.restore();
+    }
+  }
+
+  function drawTitle() {
+    // Big pulsing title
+    const s1 = 1 + Math.sin(sceneTime*0.04) * 0.025;
+    ctx.save();
+    ctx.translate(W/2, 78);
+    ctx.scale(s1, s1);
+    drawText('HIGH CHALLENGE', 0, 0, COL.challenge, 18, 'center');
+    ctx.restore();
+
+    const s2 = 1 + Math.sin(sceneTime*0.04 + 0.7) * 0.025;
+    ctx.save();
+    ctx.translate(W/2, 114);
+    ctx.scale(s2, s2);
+    drawText('HIGH SUPPORT', 0, 0, COL.support, 18, 'center');
+    ctx.restore();
+
+    drawText('A STORY ARCADE CABINET', W/2, 164, COL.dim, 8, 'center');
+
+    // Animated demo sprite descending
+    if (demoTeam) {
+      const type = TEAM_TYPES[demoTeam.typeIdx];
+      drawFullSprite(HEADS[type.head], TEAM_BODY_FRAMES[demoTeam.animFrame],
+                     demoTeam.x - 18, demoTeam.y - 21, type.pal, 3);
+      drawBubble(demoTeam.x, demoTeam.y - 24, demoTeam.need);
+    }
+
+    if (Math.floor(sceneTime/30) % 2 === 0) {
+      drawText('PRESS SPACE TO START', W/2, 510, COL.challenge, 11, 'center');
+    }
+    drawText('HI  ' + String(hiScore).padStart(6,'0'), W/2, 550, COL.dim, 9, 'center');
+    if (!seenTutorial) drawText('FIRST TIME? TUTORIAL APPEARS NEXT', W/2, 580, COL.dimmer, 6, 'center');
+    drawText('STORY ARCADE  •  SCOTT & ALEX', W/2, H - 22, COL.dim, 7, 'center');
+  }
+
+  function drawTutorial() {
+    ctx.fillStyle = 'rgba(4,16,30,0.92)';
+    ctx.fillRect(0, 0, W, H);
+
+    drawText('HOW TO PLAY', W/2, 36, COL.text, 16, 'center');
+    drawText('YOUR TEAM IS DESCENDING', W/2, 76, COL.dim, 8, 'center');
+    drawText('EACH SHOWS WHAT THEY NEED', W/2, 92, COL.dim, 8, 'center');
+
+    // Three demo sprites with bubbles, side by side
+    const exY = 175;
+    const labelY = exY + 60;
+    const descY = exY + 78;
+
+    const examples = [
+      { x: W/2 - 130, need: NEED.CHAL, typeIdx: 0, label: 'PRESS C', desc: 'CHALLENGE', col: COL.challenge },
+      { x: W/2,       need: NEED.SUPP, typeIdx: 3, label: 'PRESS S', desc: 'SUPPORT',  col: COL.support },
+      { x: W/2 + 130, need: NEED.BOTH, typeIdx: 5, label: 'BOTH KEYS', desc: 'BOTH',   col: COL.both }
+    ];
+    examples.forEach((ex, i) => {
+      const type = TEAM_TYPES[ex.typeIdx];
+      const bob = Math.sin(sceneTime*0.1 + i*0.7) * 1.4;
+      const frame = ((sceneTime >> 4) + i) & 1;
+      drawFullSprite(HEADS[type.head], TEAM_BODY_FRAMES[frame],
+                     ex.x - 18, exY + bob, type.pal, 3);
+      drawBubble(ex.x, exY + bob - 3, ex.need);
+      drawText(ex.label, ex.x, labelY, ex.col, 8, 'center');
+      drawText(ex.desc, ex.x, descY, COL.text, 7, 'center');
+    });
+
+    // Rules
+    const ry = 320;
+    drawText('THE RULES', W/2, ry, COL.dim, 8, 'center');
+    drawText('Match their need  -  they flourish', W/2, ry + 26, COL.success, 8, 'center');
+    drawText('Wrong type  -  they fade.  -50', W/2, ry + 48, COL.failure, 8, 'center');
+    drawText('Reach the bottom  -  -1 LIFE', W/2, ry + 70, COL.failure, 8, 'center');
+    drawText('3 LIVES  •  ENDLESS WAVES', W/2, ry + 100, COL.text, 9, 'center');
+
+    // Magician hint
+    drawText("Keep an eye out for the magician...", W/2, 488, COL.rare, 7, 'center');
+
+    if (Math.floor(sceneTime/30) % 2 === 0) {
+      drawText('PRESS SPACE TO BEGIN', W/2, 555, COL.challenge, 10, 'center');
+    }
+    drawText('ESC TO EXIT', W/2, 595, COL.dim, 7, 'center');
+  }
+
+  function drawWaveCard() {
+    const w = game.currentWave;
+    ctx.fillStyle = 'rgba(4,16,30,0.84)';
+    ctx.fillRect(0, 0, W, H);
+
+    // wave label fades in
+    const t1 = Math.min(1, game.cardTime / 25);
+    ctx.save();
+    ctx.globalAlpha = t1;
+    drawText('WAVE ' + (game.waveIdx+1), W/2, 220, COL.dim, 11, 'center');
+    ctx.restore();
+
+    // title types out letter by letter
+    if (game.cardTime > 20) {
+      const chars = Math.min(w.name.length, Math.floor((game.cardTime - 20) / 2));
+      drawText(w.name.slice(0, chars), W/2, 258, COL.challenge, 15, 'center');
+    }
+
+    // ROUND indicator for cycles beyond the first
+    if (w.cycle > 0 && game.cardTime > 50) {
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, (game.cardTime - 50) / 18);
+      const roman = ['','II','III','IV','V','VI','VII','VIII','IX','X'][w.cycle] || ('x' + (w.cycle+1));
+      drawText('ROUND ' + roman, W/2, 290, COL.rare, 9, 'center');
+      ctx.restore();
+    }
+
+    if (game.cardTime > 70) {
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, (game.cardTime - 70) / 22);
+      let y = w.cycle > 0 ? 330 : 318;
+      wrap(w.sub, 28).forEach(L => { drawText(L, W/2, y, COL.text, 9, 'center'); y += 18; });
+      ctx.restore();
+    }
+
+    if (game.cardTime > Math.min(110, waveCardDuration() - 30) && Math.floor(game.cardTime/15) % 2 === 0) {
+      drawText('READY', W/2, 410, COL.support, 13, 'center');
+    }
+  }
+
+  function drawGameOver() {
+    ctx.fillStyle = 'rgba(4,16,30,0.88)';
+    ctx.fillRect(0, 0, W, H);
+
+    const title = 'GAME OVER';
+    const chars = Math.min(title.length, Math.floor(sceneTime / 3));
+    drawText(title.slice(0, chars), W/2, 92, COL.challenge, 18, 'center');
+
+    if (sceneTime > 45) {
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, (sceneTime - 45) / 18);
+      drawText('SCORE  ' + String(game.score).padStart(6,'0'), W/2, 158, COL.text, 11, 'center');
+      if (game.newHi) {
+        if (Math.floor(sceneTime/20) % 2 === 0) {
+          drawText('NEW HIGH SCORE', W/2, 188, COL.rare, 9, 'center');
+        }
+      } else {
+        drawText('HI     ' + String(hiScore).padStart(6,'0'), W/2, 188, COL.dim, 9, 'center');
+      }
+      ctx.restore();
+    }
+
+    if (sceneTime > 75) {
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, (sceneTime - 75) / 22);
+      drawText('RANK', W/2, 234, COL.dim, 9, 'center');
+      let rankCol = COL.support;
+      if (game.rank === 'TORMENTOR')   rankCol = COL.failure;
+      else if (game.rank === 'PATRONISER') rankCol = '#f9a8d4';
+      else if (game.rank === 'ABDICATOR')  rankCol = COL.dim;
+      drawText(game.rank, W/2, 264, rankCol, 16, 'center');
+      ctx.restore();
+    }
+
+    if (sceneTime > 105) {
+      ctx.save();
+      ctx.globalAlpha = Math.min(1, (sceneTime - 105) / 25);
+      const note = ({
+        LIBERATOR:  'You read each person and gave what they needed.',
+        TORMENTOR:  'Too much challenge. Balance with support.',
+        PATRONISER: 'Too much support. Stretch them with challenge.',
+        ABDICATOR:  'Step in sooner. Notice who needs you.'
+      })[game.rank];
+      let y = 320;
+      wrap(note, 32).forEach(L => { drawText(L, W/2, y, COL.text, 8, 'center'); y += 16; });
+
+      // Stats
+      const sy = 388;
+      ctx.fillStyle = 'rgba(0,97,173,0.18)';
+      ctx.fillRect(60, sy - 8, W - 120, 78);
+      ctx.strokeStyle = 'rgba(0,97,173,0.6)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(60.5, sy - 7.5, W - 121, 77);
+      drawText('CORRECT', W/2 - 80, sy, COL.dim, 7, 'right');
+      drawText(String(game.correct), W/2 - 70, sy, COL.success, 9, 'left');
+      drawText('MISSED',  W/2 + 70, sy, COL.dim, 7, 'right');
+      drawText(String(game.missed),  W/2 + 80, sy, COL.failure, 9, 'left');
+      drawText('OVER C',  W/2 - 80, sy + 22, COL.dim, 7, 'right');
+      drawText(String(game.wrongChal), W/2 - 70, sy + 22, COL.challenge, 9, 'left');
+      drawText('OVER S',  W/2 + 70, sy + 22, COL.dim, 7, 'right');
+      drawText(String(game.wrongSupp), W/2 + 80, sy + 22, COL.support, 9, 'left');
+      const cyc = Math.floor(game.waveIdx / WAVES.length) + 1;
+      const roman = ['','II','III','IV','V','VI','VII','VIII','IX','X'][cyc-1] || ('x' + cyc);
+      drawText('REACHED WAVE ' + (game.waveIdx+1) + (cyc > 1 ? '  (ROUND ' + roman + ')' : ''),
+               W/2, sy + 50, COL.text, 7, 'center');
+      ctx.restore();
+    }
+
+    if (sceneTime > 140 && Math.floor(sceneTime/30) % 2 === 0) {
+      drawText('SPACE TO PLAY AGAIN', W/2, 510, COL.challenge, 9, 'center');
+    }
+    drawText('ESC TO EXIT', W/2, 540, COL.dim, 8, 'center');
+  }
+
+  // ---- Flow helpers ------------------------------------------
+  function startGame() {
+    newGame();
+    sceneTime = 0;
+    if (!seenTutorial) {
+      scene = 'tutorial';
+    } else {
+      scene = 'wavecard';
+      game.cardTime = 0;
+      sStart();
+    }
+  }
+
+  function dismissTutorial() {
+    scene = 'wavecard';
+    game.cardTime = 0;
+    sceneTime = 0;
+    seenTutorial = true;
+    try { localStorage.setItem(SEEN_TUTORIAL_KEY, '1'); } catch(e){}
+    sStart();
+  }
+
+  // ---- Input -------------------------------------------------
+  function onKeyDown(e) {
+    if (!modal) return;
+    const k = e.key;
+    if (k === 'Escape') { closeArcade(); e.preventDefault(); return; }
+    if (k === 'ArrowLeft' || k === 'a' || k === 'A') { keys.left = true; e.preventDefault(); }
+    if (k === 'ArrowRight' || k === 'd' || k === 'D') { keys.right = true; e.preventDefault(); }
+    if (k === 'c' || k === 'C') { if (scene === 'play') firePlayer('C'); e.preventDefault(); }
+    if (k === 's' || k === 'S') { if (scene === 'play') firePlayer('S'); e.preventDefault(); }
+    if (k === ' ') {
+      if (scene === 'title') startGame();
+      else if (scene === 'tutorial') dismissTutorial();
+      else if (scene === 'gameover') {
+        newGame(); scene = 'wavecard'; game.cardTime = 0; sceneTime = 0; sStart();
+      }
+      e.preventDefault();
+    }
+  }
+  function onKeyUp(e) {
+    const k = e.key;
+    if (k === 'ArrowLeft' || k === 'a' || k === 'A') keys.left = false;
+    if (k === 'ArrowRight' || k === 'd' || k === 'D') keys.right = false;
+  }
+
+  // ---- Loop --------------------------------------------------
+  function loop() {
+    update();
+    render();
+    raf = requestAnimationFrame(loop);
+  }
+
+  // ---- Open / Close ------------------------------------------
+  function buildModal() {
+    modal = document.createElement('div');
+    modal.className = 'story-arcade';
+    modal.innerHTML =
+      '<div class="sa-backdrop"></div>' +
+      '<div class="sa-cabinet">' +
+        '<div class="sa-top">' +
+          '<div class="sa-marquee">HIGH CHALLENGE • HIGH SUPPORT</div>' +
+          '<button class="sa-close" aria-label="Close arcade" title="Exit (Esc)">×</button>' +
+        '</div>' +
+        '<div class="sa-screen">' +
+          '<canvas class="sa-canvas" width="' + W + '" height="' + H + '"></canvas>' +
+          '<div class="sa-scanlines"></div>' +
+          '<div class="sa-vignette"></div>' +
+        '</div>' +
+        '<div class="sa-touch">' +
+          '<button class="sa-btn sa-left" aria-label="Move left">◀</button>' +
+          '<button class="sa-btn sa-c" aria-label="Fire challenge">C</button>' +
+          '<button class="sa-btn sa-s" aria-label="Fire support">S</button>' +
+          '<button class="sa-btn sa-right" aria-label="Move right">▶</button>' +
+        '</div>' +
+        '<div class="sa-foot">PRESS START &nbsp; 1 PLAYER</div>' +
+      '</div>';
+    document.body.appendChild(modal);
+
+    canvas = modal.querySelector('.sa-canvas');
+    ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+
+    modal.querySelector('.sa-close').addEventListener('click', closeArcade);
+    modal.querySelector('.sa-backdrop').addEventListener('click', closeArcade);
+
+    function bindBtn(sel, onDown, onUp) {
+      const b = modal.querySelector(sel);
+      const dn = (e)=>{ e.preventDefault(); onDown(); };
+      const up = (e)=>{ e.preventDefault(); if (onUp) onUp(); };
+      b.addEventListener('pointerdown', dn);
+      b.addEventListener('pointerup', up);
+      b.addEventListener('pointercancel', up);
+      b.addEventListener('pointerleave', up);
+    }
+    bindBtn('.sa-left',  ()=> touchMove = -1, ()=> touchMove = 0);
+    bindBtn('.sa-right', ()=> touchMove =  1, ()=> touchMove = 0);
+    bindBtn('.sa-c', ()=> {
+      if (scene === 'play') firePlayer('C');
+      else if (scene === 'title') startGame();
+      else if (scene === 'tutorial') dismissTutorial();
+      else if (scene === 'gameover') { newGame(); scene = 'wavecard'; game.cardTime = 0; sceneTime = 0; sStart(); }
+    });
+    bindBtn('.sa-s', ()=> {
+      if (scene === 'play') firePlayer('S');
+      else if (scene === 'title') startGame();
+      else if (scene === 'tutorial') dismissTutorial();
+      else if (scene === 'gameover') { newGame(); scene = 'wavecard'; game.cardTime = 0; sceneTime = 0; sStart(); }
+    });
+
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup', onKeyUp);
+
+    requestAnimationFrame(()=> modal.classList.add('sa-open'));
+  }
+
+  function closeArcade() {
+    if (!modal) return;
+    window.removeEventListener('keydown', onKeyDown);
+    window.removeEventListener('keyup', onKeyUp);
+    if (raf) cancelAnimationFrame(raf);
+    raf = null;
+    modal.classList.remove('sa-open');
+    const m = modal;
+    setTimeout(()=> { if (m && m.parentNode) m.parentNode.removeChild(m); }, 300);
+    modal = null; canvas = null; ctx = null;
+    keys = {}; touchMove = 0; flashes = []; particles = [];
+  }
+
+  window.openStoryArcade = function() {
+    if (modal) return;
+    scene = 'title';
+    sceneTime = 0;
+    keys = {}; touchMove = 0; flashes = []; particles = [];
+    initStars();
+    newGame();
+    demoTeam = {
+      x: W/2,
+      y: 220,
+      typeIdx: Math.floor(Math.random() * TEAM_TYPES.length),
+      need: ['C','S','B'][Math.floor(Math.random()*3)],
+      animFrame: 0,
+      animTimer: 0,
+      animPhase: 0
+    };
+    buildModal();
+    loop();
+  };
+})();
 
 // ── Initialize ──
 // Welcome overlay: unlocks audio on click, then reveals the app
