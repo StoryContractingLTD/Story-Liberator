@@ -18231,15 +18231,33 @@ function generateMotivationPDF(state) {
 
     drawText('A STORY ARCADE CABINET', W/2, 164, COL.dim, 8, 'center');
 
-    // Champion banner: who found the easter egg and their top score.
+    // Champion banner: name on its own line, sized to fit so letters
+    // never squash, then the phrase, then the top score.
     if (lbState === 'ready' && leaderboard.length > 0) {
       const champ = leaderboard[0];
-      let cy = 196;
-      wrap(champ.name.toUpperCase() + ' FOUND THE EASTER EGG', 26).forEach(function(L){
-        drawText(L, W/2, cy, COL.rare, 7, 'center'); cy += 14;
-      });
-      drawText('TOP SCORE  ' + String(champ.score).padStart(6,'0'),
-               W/2, cy + 4, COL.rareGlow, 9, 'center');
+
+      // Shrink a line until it fits comfortably inside the screen.
+      function fitSize(txt, maxS, minS, maxW) {
+        let s = maxS;
+        ctx.font = s + "px 'Press Start 2P', monospace";
+        while (s > minS && ctx.measureText(txt).width > maxW) {
+          s--; ctx.font = s + "px 'Press Start 2P', monospace";
+        }
+        return s;
+      }
+
+      const maxW  = W - 60;
+      const nm    = champ.name.toUpperCase();
+      const score = 'TOP SCORE  ' + String(champ.score).padStart(6, '0');
+
+      const ns = fitSize(nm, 14, 8, maxW);
+      const ps = fitSize('FOUND THE EASTER EGG', 8, 6, maxW);
+      const ss = fitSize(score, 9, 6, maxW);
+
+      let y = 176;
+      drawText(nm, W/2, y, COL.rareGlow, ns, 'center');           y += ns + 10;
+      drawText('FOUND THE EASTER EGG', W/2, y, COL.rare, ps, 'center'); y += ps + 12;
+      drawText(score, W/2, y, COL.text, ss, 'center');
     } else if (lbState === 'loading') {
       drawText('LOADING LEADERBOARD...', W/2, 200, COL.dimmer, 6, 'center');
     }
