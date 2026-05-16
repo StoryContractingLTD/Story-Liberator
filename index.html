@@ -1259,7 +1259,7 @@ html,body{min-height:100vh;background:#EAF4FB;font-family:'Barlow',system-ui,san
 .sa-close{background:transparent;color:rgba(255,255,255,.7);border:2px solid rgba(255,255,255,.3);width:32px;height:32px;font-size:18px;cursor:pointer;border-radius:6px;font-family:'Press Start 2P',monospace;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
 .sa-close:hover{color:#fff;border-color:#fa6b02}
 .sa-screen{position:relative;background:#04101e;border:3px solid #0061AD;border-radius:6px;overflow:hidden;box-shadow:inset 0 0 80px rgba(0,97,173,.25),inset 0 0 8px rgba(0,0,0,.6)}
-.sa-canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;max-width:min(92vw,480px);max-height:calc(96vh - 120px);height:auto}
+.sa-canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;aspect-ratio:480 / 640;height:min(calc(96vh - 170px), calc(92vw * 640 / 480), 640px);width:auto}
 .sa-scanlines{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 2px,rgba(0,0,0,.16) 3px,rgba(0,0,0,.16) 3px);pointer-events:none;mix-blend-mode:multiply}
 .sa-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%);pointer-events:none}
 .sa-touch{display:none;width:100%;margin-top:10px;gap:6px;justify-content:space-between}
@@ -1268,8 +1268,22 @@ html,body{min-height:100vh;background:#EAF4FB;font-family:'Barlow',system-ui,san
 .sa-c{color:#fa6b02;border-color:#fa6b02;background:rgba(250,107,2,.15)}
 .sa-s{color:#4d9fea;border-color:#0061AD;background:rgba(0,97,173,.15)}
 .sa-foot{font-family:'Press Start 2P',monospace;font-size:7px;color:rgba(255,255,255,.4);margin-top:8px;letter-spacing:.2em}
+.sa-name{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(4,16,30,.82);backdrop-filter:blur(2px);z-index:5;padding:16px}
+.sa-name.sa-name-on{display:flex}
+.sa-name-box{width:88%;max-width:340px;text-align:center;font-family:'Press Start 2P',monospace;color:#FEFFFF}
+.sa-name-title{color:#FFD700;font-size:13px;letter-spacing:.04em;text-shadow:0 0 10px rgba(255,215,0,.45);margin-bottom:8px}
+.sa-name-sub{color:rgba(255,255,255,.6);font-size:8px;margin-bottom:18px}
+.sa-name-input{width:100%;box-sizing:border-box;background:#04101e;border:2px solid #0061AD;color:#fa6b02;font-family:'Press Start 2P',monospace;font-size:14px;text-align:center;padding:14px 10px;border-radius:6px;letter-spacing:.06em;outline:none;text-transform:uppercase}
+.sa-name-input:focus{border-color:#fa6b02;box-shadow:0 0 0 2px rgba(250,107,2,.3)}
+.sa-name-row{display:flex;gap:10px;margin-top:16px}
+.sa-name-btn{flex:1;font-family:'Press Start 2P',monospace;font-size:9px;padding:13px 6px;border-radius:6px;cursor:pointer;border:2px solid;letter-spacing:.04em;transition:all .15s}
+.sa-name-go{color:#04101e;background:#fa6b02;border-color:#fa6b02}
+.sa-name-go:hover{background:#ffb547;border-color:#ffb547}
+.sa-name-skip{color:rgba(255,255,255,.65);background:transparent;border-color:rgba(255,255,255,.3)}
+.sa-name-skip:hover{color:#fff;border-color:rgba(255,255,255,.6)}
+.sa-name-note{margin-top:14px;font-size:7px;color:rgba(255,255,255,.45);min-height:9px;letter-spacing:.03em}
 @media (hover:none) and (pointer:coarse){.sa-touch{display:flex}}
-@media (max-width:580px){.sa-cabinet{padding:12px 10px 10px;border-width:3px;border-radius:14px}.sa-marquee{font-size:8px}.sa-touch{display:flex}.sa-foot{font-size:6px}}
+@media (max-width:580px){.sa-cabinet{padding:12px 10px 10px;border-width:3px;border-radius:14px}.sa-marquee{font-size:8px}.sa-touch{display:flex}.sa-foot{font-size:6px}.sa-name-title{font-size:11px}.sa-name-input{font-size:12px}}
 
 </style>
 
@@ -12739,7 +12753,8 @@ function buildSensationIntuitionCheck() {
     .${uid}-track{flex:1;height:8px;background:linear-gradient(90deg,#1A3A5C 0%,#a0b4c5 50%,#fa6b02 100%);border-radius:4px;position:relative}
     .${uid}-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:18px;height:18px;border-radius:50%;background:white;border:3px solid #1A3A5C;box-shadow:0 3px 10px rgba(0,0,0,0.18);transition:left .8s cubic-bezier(.34,1.4,.64,1) .15s,border-color .8s ease .15s}
     .${uid}-coach{font-size:14px;color:#445566;line-height:1.65;border-left:3px solid #fa6b02;padding-left:14px;margin-top:6px}
-    .${uid}-pick-row{display:grid;grid-template-columns:80px 1fr 24px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed #e0e8f0;font-size:13px;color:#556677}
+    .${uid}-pick-row{display:grid;grid-template-columns:80px 1fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed #e0e8f0;font-size:13px;color:#556677}
+    .${uid}-pick-row > :last-child{justify-self:end}
     .${uid}-pick-row:last-child{border-bottom:0}
     .${uid}-pick-num{font-family:"Barlow Condensed",sans-serif;font-weight:800;color:#8fa0b0;letter-spacing:.04em;text-transform:uppercase;font-size:11px}
     .${uid}-pick-tag{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
@@ -17072,6 +17087,24 @@ function generateMotivationPDF(state) {
   const SHOT_COOLDOWN = 14;
   const HISCORE_KEY = 'story-arcade-hiscore';
   const SEEN_TUTORIAL_KEY = 'story-arcade-seen-tutorial';
+  const LAST_NAME_KEY = 'story-arcade-last-name';
+
+  // ============================================================
+  //  LEADERBOARD CONFIG  (Supabase)
+  //  The Project URL is already filled in. You only need to paste
+  //  your public key between the quotes on the SUPABASE_KEY line.
+  //  Find it in Supabase: Settings -> API Keys. Use the
+  //  "Publishable key" (starts sb_publishable_) or, if your project
+  //  shows one, the legacy "anon" key (a long eyJ... string).
+  //  Leave SUPABASE_KEY blank to disable the leaderboard gracefully.
+  // ============================================================
+  const SUPABASE_URL = 'https://yianswfnphrewzdamvgz.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_aeOIb_8F8J-3rQ9rJRnqBw_ZQEFQp5M';
+  const LB_TABLE     = 'arcade_scores';
+  const LB_LIMIT     = 5;
+  function lbConfigured(){
+    return SUPABASE_URL.indexOf('http') === 0 && SUPABASE_KEY.length > 20;
+  }
 
   const COL = {
     bg: '#04101e',
@@ -17179,6 +17212,83 @@ function generateMotivationPDF(state) {
   let stars = [];
   let demoTeam = null;
 
+  // ---- Leaderboard state -------------------------------------
+  let leaderboard = [];          // [{name, score}], top first
+  let lbState = 'idle';          // idle | loading | ready | error
+  let lbSubmitState = 'idle';    // idle | sending | done | error
+  let lbJustSubmitted = null;    // {name, score} highlighted on the board
+  let nameEl = null, nameInput = null, nameNote = null;
+  let lastName = '';
+  try { lastName = localStorage.getItem(LAST_NAME_KEY) || ''; } catch(e){}
+
+  function lbHeaders(){
+    // Send the key via the apikey header only. This works for both the
+    // new-style publishable keys and legacy anon keys for the public,
+    // RLS-gated read/insert access this leaderboard uses.
+    return {
+      'apikey': SUPABASE_KEY,
+      'Content-Type': 'application/json'
+    };
+  }
+
+  function loadLeaderboard(){
+    if (!lbConfigured()) { lbState = 'idle'; return Promise.resolve(); }
+    lbState = 'loading';
+    const url = SUPABASE_URL.replace(/\/+$/,'') +
+      '/rest/v1/' + LB_TABLE +
+      '?select=name,score&order=score.desc,created_at.asc&limit=' + LB_LIMIT;
+    return fetch(url, { headers: lbHeaders() })
+      .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function(rows){
+        leaderboard = (Array.isArray(rows) ? rows : []).map(function(x){
+          return { name: String(x.name || '').slice(0,14), score: +x.score || 0 };
+        });
+        lbState = 'ready';
+      })
+      .catch(function(err){
+        console.warn('Leaderboard load failed:', err);
+        lbState = 'error';
+      });
+  }
+
+  // Does this score earn a place in the visible top 5?
+  function scoreQualifies(score){
+    if (score <= 0) return false;
+    if (lbState !== 'ready') return true;          // unknown -> let them try
+    if (leaderboard.length < LB_LIMIT) return true;
+    return score > leaderboard[leaderboard.length - 1].score;
+  }
+
+  function submitScore(name, score){
+    name = String(name || '').replace(/\s+/g,' ').trim().slice(0,14);
+    if (!name) name = 'ANON';
+    try { localStorage.setItem(LAST_NAME_KEY, name); } catch(e){}
+    lastName = name;
+    if (!lbConfigured()) {
+      lbJustSubmitted = { name: name, score: score };
+      lbSubmitState = 'done';
+      return Promise.resolve();
+    }
+    lbSubmitState = 'sending';
+    const url = SUPABASE_URL.replace(/\/+$/,'') + '/rest/v1/' + LB_TABLE;
+    return fetch(url, {
+      method: 'POST',
+      headers: Object.assign(lbHeaders(), { 'Prefer': 'return=minimal' }),
+      body: JSON.stringify({ name: name, score: score })
+    })
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); })
+    .then(function(){
+      lbJustSubmitted = { name: name, score: score };
+      lbSubmitState = 'done';
+      return loadLeaderboard();
+    })
+    .catch(function(err){
+      console.warn('Score submit failed:', err);
+      lbJustSubmitted = { name: name, score: score };
+      lbSubmitState = 'error';
+    });
+  }
+
   // ---- Audio (uses main getCtx) -------------------------------
   function tone(freq, dur, type, gain, attack) {
     try {
@@ -17208,6 +17318,7 @@ function generateMotivationPDF(state) {
     } catch(e){}
   }
   function sFire(isC) { tone(isC ? 880 : 523, 0.07, 'square', 0.012); }
+  function sClick()    { tone(620, 0.05, 'square', 0.016); }
   function sHit()      { sweep(880, 1760, 0.10, 'square', 0.018); }
   function sLand()     { sweep(660, 990, 0.18, 'sine', 0.022); }
   function sWrong()    { sweep(440, 110, 0.18, 'sawtooth', 0.018); }
@@ -17826,7 +17937,7 @@ function generateMotivationPDF(state) {
         }
         demoTeam.animPhase += 0.08;
         if (demoTeam.y > 470) {
-          demoTeam.y = 220;
+          demoTeam.y = 268;
           demoTeam.typeIdx = (demoTeam.typeIdx + 1) % TEAM_TYPES.length;
           demoTeam.need = ['C','S','B'][Math.floor(Math.random()*3)];
         }
@@ -17834,7 +17945,8 @@ function generateMotivationPDF(state) {
       return;
     }
 
-    if (scene === 'tutorial' || scene === 'gameover') return;
+    if (scene === 'tutorial' || scene === 'gameover' ||
+        scene === 'leaderboard' || scene === 'name') return;
 
     if (scene === 'wavecard') {
       game.cardTime++;
@@ -18057,6 +18169,13 @@ function generateMotivationPDF(state) {
     if (scene === 'tutorial') return drawTutorial();
     if (scene === 'wavecard') return drawWaveCard();
     if (scene === 'gameover') return drawGameOver();
+    if (scene === 'leaderboard') return drawLeaderboard();
+    if (scene === 'name') {
+      // HTML overlay sits on top; just dim the canvas behind it.
+      ctx.fillStyle = 'rgba(4,16,30,0.7)';
+      ctx.fillRect(0, 0, W, H);
+      return;
+    }
 
     // play scene
     drawParticles();
@@ -18112,6 +18231,19 @@ function generateMotivationPDF(state) {
 
     drawText('A STORY ARCADE CABINET', W/2, 164, COL.dim, 8, 'center');
 
+    // Champion banner: who found the easter egg and their top score.
+    if (lbState === 'ready' && leaderboard.length > 0) {
+      const champ = leaderboard[0];
+      let cy = 196;
+      wrap(champ.name.toUpperCase() + ' FOUND THE EASTER EGG', 26).forEach(function(L){
+        drawText(L, W/2, cy, COL.rare, 7, 'center'); cy += 14;
+      });
+      drawText('TOP SCORE  ' + String(champ.score).padStart(6,'0'),
+               W/2, cy + 4, COL.rareGlow, 9, 'center');
+    } else if (lbState === 'loading') {
+      drawText('LOADING LEADERBOARD...', W/2, 200, COL.dimmer, 6, 'center');
+    }
+
     // Animated demo sprite descending
     if (demoTeam) {
       const type = TEAM_TYPES[demoTeam.typeIdx];
@@ -18124,7 +18256,7 @@ function generateMotivationPDF(state) {
       drawText('PRESS SPACE TO START', W/2, 510, COL.challenge, 11, 'center');
     }
     drawText('HI  ' + String(hiScore).padStart(6,'0'), W/2, 550, COL.dim, 9, 'center');
-    if (!seenTutorial) drawText('FIRST TIME? TUTORIAL APPEARS NEXT', W/2, 580, COL.dimmer, 6, 'center');
+    drawText('HOW TO PLAY APPEARS NEXT', W/2, 580, COL.dimmer, 6, 'center');
     drawText('STORY ARCADE  •  SCOTT & ALEX', W/2, H - 22, COL.dim, 7, 'center');
   }
 
@@ -18283,22 +18415,84 @@ function generateMotivationPDF(state) {
     }
 
     if (sceneTime > 140 && Math.floor(sceneTime/30) % 2 === 0) {
-      drawText('SPACE TO PLAY AGAIN', W/2, 510, COL.challenge, 9, 'center');
+      drawText('SPACE  CONTINUE', W/2, 510, COL.challenge, 9, 'center');
     }
     drawText('ESC TO EXIT', W/2, 540, COL.dim, 8, 'center');
+  }
+
+  function drawLeaderboard() {
+    ctx.fillStyle = 'rgba(4,16,30,0.90)';
+    ctx.fillRect(0, 0, W, H);
+
+    // Heading
+    const ttl = 'TOP 5 LIBERATORS';
+    const chars = Math.min(ttl.length, Math.floor(sceneTime / 2));
+    drawText(ttl.slice(0, chars), W/2, 64, COL.rare, 15, 'center');
+    drawText('HIGH CHALLENGE • HIGH SUPPORT', W/2, 100, COL.dim, 7, 'center');
+
+    const top  = 150;
+    const rowH = 60;
+
+    if (lbState === 'loading') {
+      drawText('LOADING...', W/2, 280, COL.text, 10, 'center');
+    } else if (lbState === 'error') {
+      drawText('LEADERBOARD OFFLINE', W/2, 250, COL.failure, 9, 'center');
+      let yy = 286;
+      wrap('Your run is saved on this device. The board will return when the connection is back.', 30)
+        .forEach(function(L){ drawText(L, W/2, yy, COL.dim, 7, 'center'); yy += 16; });
+    } else if (leaderboard.length === 0) {
+      drawText('NO SCORES YET', W/2, 260, COL.text, 11, 'center');
+      drawText('BE THE FIRST TO MAKE THE BOARD', W/2, 292, COL.dim, 7, 'center');
+    } else {
+      const rankCols = [COL.rare, '#d4dce6', '#d99a52', COL.text, COL.text];
+      for (let i = 0; i < leaderboard.length && i < LB_LIMIT; i++) {
+        const e  = leaderboard[i];
+        const ry = top + i * rowH;
+        const reveal = Math.min(1, Math.max(0, (sceneTime - 10 - i * 8) / 14));
+        if (reveal <= 0) continue;
+        ctx.save();
+        ctx.globalAlpha = reveal;
+
+        const isMine = lbJustSubmitted &&
+          e.name === lbJustSubmitted.name && e.score === lbJustSubmitted.score;
+        if (isMine) {
+          const pulse = 0.16 + Math.abs(Math.sin(sceneTime * 0.08)) * 0.16;
+          ctx.fillStyle = 'rgba(250,107,2,' + pulse.toFixed(3) + ')';
+          ctx.fillRect(40, ry - 10, W - 80, rowH - 12);
+          ctx.strokeStyle = COL.challenge;
+          ctx.lineWidth = 1;
+          ctx.strokeRect(40.5, ry - 9.5, W - 81, rowH - 13);
+        }
+
+        const col = isMine ? COL.challengeBright : (rankCols[i] || COL.text);
+        drawText(String(i + 1), 60, ry, col, 13, 'left');
+        let nm = e.name.toUpperCase();
+        if (nm.length > 13) nm = nm.slice(0, 13);
+        drawText(nm, 104, ry + 1, isMine ? COL.text : COL.text, 11, 'left');
+        drawText(String(e.score).padStart(6, '0'), W - 56, ry, col, 12, 'right');
+        ctx.restore();
+      }
+
+      if (lbJustSubmitted) {
+        let msg = 'SCORE SAVED', mc = COL.success;
+        if (lbSubmitState === 'error') { msg = 'SAVED ON THIS DEVICE ONLY'; mc = COL.dim; }
+        drawText(msg, W/2, top + 5 * rowH + 6, mc, 7, 'center');
+      }
+    }
+
+    if (Math.floor(sceneTime / 30) % 2 === 0) {
+      drawText('SPACE  PLAY AGAIN', W/2, 562, COL.challenge, 10, 'center');
+    }
+    drawText('ESC TO EXIT', W/2, 596, COL.dim, 7, 'center');
   }
 
   // ---- Flow helpers ------------------------------------------
   function startGame() {
     newGame();
     sceneTime = 0;
-    if (!seenTutorial) {
-      scene = 'tutorial';
-    } else {
-      scene = 'wavecard';
-      game.cardTime = 0;
-      sStart();
-    }
+    // Always show the How To Play screen on a fresh start so the
+    // instructions are never skipped, even for returning players.
+    scene = 'tutorial';
   }
 
   function dismissTutorial() {
@@ -18310,10 +18504,76 @@ function generateMotivationPDF(state) {
     sStart();
   }
 
+  // ---- Leaderboard flow --------------------------------------
+  function showNameEntry() {
+    scene = 'name';
+    sceneTime = 0;
+    lbSubmitState = 'idle';
+    if (nameInput) {
+      nameInput.value = (lastName || '').toUpperCase();
+      if (nameNote) nameNote.textContent = '';
+      if (nameEl) nameEl.classList.add('sa-name-on');
+      // Focus after the overlay is visible (next frame is safest).
+      requestAnimationFrame(function(){
+        try { nameInput.focus(); nameInput.select(); } catch(e){}
+      });
+    }
+  }
+
+  function hideNameEntry() {
+    if (nameEl) nameEl.classList.remove('sa-name-on');
+    if (nameInput) { try { nameInput.blur(); } catch(e){} }
+  }
+
+  function goToLeaderboard() {
+    hideNameEntry();
+    scene = 'leaderboard';
+    sceneTime = 0;
+    if (lbState !== 'ready' && lbState !== 'loading') loadLeaderboard();
+  }
+
+  function confirmName() {
+    if (lbSubmitState === 'sending') return;
+    const val = nameInput ? nameInput.value : '';
+    sClick();
+    if (nameNote) nameNote.textContent = lbConfigured() ? 'SAVING...' : '';
+    submitScore(val, game.score).then(goToLeaderboard);
+  }
+
+  function skipName() {
+    sClick();
+    hideNameEntry();
+    goToLeaderboard();
+  }
+
+  // After the GAME OVER screen, decide where SPACE / tap should go.
+  function advanceFromGameOver() {
+    if (lbConfigured() && !lbJustSubmitted && scoreQualifies(game.score)) {
+      showNameEntry();
+    } else {
+      goToLeaderboard();
+    }
+  }
+
+  function playAgain() {
+    lbJustSubmitted = null;
+    lbSubmitState = 'idle';
+    newGame();
+    scene = 'wavecard';
+    game.cardTime = 0;
+    sceneTime = 0;
+    sStart();
+  }
+
   // ---- Input -------------------------------------------------
   function onKeyDown(e) {
     if (!modal) return;
     const k = e.key;
+    // During name entry the HTML input owns the keyboard.
+    if (scene === 'name') {
+      if (k === 'Escape') { skipName(); e.preventDefault(); }
+      return;
+    }
     if (k === 'Escape') { closeArcade(); e.preventDefault(); return; }
     if (k === 'ArrowLeft' || k === 'a' || k === 'A') { keys.left = true; e.preventDefault(); }
     if (k === 'ArrowRight' || k === 'd' || k === 'D') { keys.right = true; e.preventDefault(); }
@@ -18322,9 +18582,8 @@ function generateMotivationPDF(state) {
     if (k === ' ') {
       if (scene === 'title') startGame();
       else if (scene === 'tutorial') dismissTutorial();
-      else if (scene === 'gameover') {
-        newGame(); scene = 'wavecard'; game.cardTime = 0; sceneTime = 0; sStart();
-      }
+      else if (scene === 'gameover') advanceFromGameOver();
+      else if (scene === 'leaderboard') playAgain();
       e.preventDefault();
     }
   }
@@ -18356,6 +18615,20 @@ function generateMotivationPDF(state) {
           '<canvas class="sa-canvas" width="' + W + '" height="' + H + '"></canvas>' +
           '<div class="sa-scanlines"></div>' +
           '<div class="sa-vignette"></div>' +
+          '<div class="sa-name">' +
+            '<div class="sa-name-box">' +
+              '<div class="sa-name-title">TOP 5 SCORE</div>' +
+              '<div class="sa-name-sub">ENTER YOUR NAME</div>' +
+              '<input class="sa-name-input" type="text" maxlength="14" ' +
+                'autocomplete="off" autocorrect="off" autocapitalize="characters" ' +
+                'spellcheck="false" aria-label="Your name for the leaderboard" />' +
+              '<div class="sa-name-row">' +
+                '<button type="button" class="sa-name-btn sa-name-skip">SKIP</button>' +
+                '<button type="button" class="sa-name-btn sa-name-go">SUBMIT</button>' +
+              '</div>' +
+              '<div class="sa-name-note"></div>' +
+            '</div>' +
+          '</div>' +
         '</div>' +
         '<div class="sa-touch">' +
           '<button class="sa-btn sa-left" aria-label="Move left">◀</button>' +
@@ -18374,6 +18647,18 @@ function generateMotivationPDF(state) {
     modal.querySelector('.sa-close').addEventListener('click', closeArcade);
     modal.querySelector('.sa-backdrop').addEventListener('click', closeArcade);
 
+    nameEl    = modal.querySelector('.sa-name');
+    nameInput = modal.querySelector('.sa-name-input');
+    nameNote  = modal.querySelector('.sa-name-note');
+    modal.querySelector('.sa-name-go').addEventListener('click', confirmName);
+    modal.querySelector('.sa-name-skip').addEventListener('click', skipName);
+    nameInput.addEventListener('keydown', function(e){
+      // While typing, keep keys local to the input.
+      e.stopPropagation();
+      if (e.key === 'Enter')  { e.preventDefault(); confirmName(); }
+      if (e.key === 'Escape') { e.preventDefault(); skipName(); }
+    });
+
     function bindBtn(sel, onDown, onUp) {
       const b = modal.querySelector(sel);
       const dn = (e)=>{ e.preventDefault(); onDown(); };
@@ -18389,13 +18674,15 @@ function generateMotivationPDF(state) {
       if (scene === 'play') firePlayer('C');
       else if (scene === 'title') startGame();
       else if (scene === 'tutorial') dismissTutorial();
-      else if (scene === 'gameover') { newGame(); scene = 'wavecard'; game.cardTime = 0; sceneTime = 0; sStart(); }
+      else if (scene === 'gameover') advanceFromGameOver();
+      else if (scene === 'leaderboard') playAgain();
     });
     bindBtn('.sa-s', ()=> {
       if (scene === 'play') firePlayer('S');
       else if (scene === 'title') startGame();
       else if (scene === 'tutorial') dismissTutorial();
-      else if (scene === 'gameover') { newGame(); scene = 'wavecard'; game.cardTime = 0; sceneTime = 0; sStart(); }
+      else if (scene === 'gameover') advanceFromGameOver();
+      else if (scene === 'leaderboard') playAgain();
     });
 
     window.addEventListener('keydown', onKeyDown);
@@ -18414,6 +18701,7 @@ function generateMotivationPDF(state) {
     const m = modal;
     setTimeout(()=> { if (m && m.parentNode) m.parentNode.removeChild(m); }, 300);
     modal = null; canvas = null; ctx = null;
+    nameEl = null; nameInput = null; nameNote = null;
     keys = {}; touchMove = 0; flashes = []; particles = [];
   }
 
@@ -18422,11 +18710,14 @@ function generateMotivationPDF(state) {
     scene = 'title';
     sceneTime = 0;
     keys = {}; touchMove = 0; flashes = []; particles = [];
+    lbJustSubmitted = null;
+    lbSubmitState = 'idle';
     initStars();
     newGame();
+    loadLeaderboard();
     demoTeam = {
       x: W/2,
-      y: 220,
+      y: 268,
       typeIdx: Math.floor(Math.random() * TEAM_TYPES.length),
       need: ['C','S','B'][Math.floor(Math.random()*3)],
       animFrame: 0,
