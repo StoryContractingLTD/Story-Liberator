@@ -17615,7 +17615,18 @@ function generateMotivationPDF(state) {
 
   function drawText(txt, x, y, col, size, align) {
     ctx.fillStyle = col || COL.text;
-    ctx.font = (size||10) + "px 'Press Start 2P', monospace";
+    let s = size || 10;
+    ctx.font = s + "px 'Press Start 2P', monospace";
+    // Safety net: the arcade font renders wide. If a line is too wide for
+    // the screen, shrink just this line so it fits with a small margin
+    // instead of running edge to edge or clipping. Short lines (the vast
+    // majority) measure under the limit and are left exactly as tuned.
+    const maxW = W - 32;
+    const w = ctx.measureText(txt).width;
+    if (w > maxW) {
+      s = Math.max(5, Math.floor(s * (maxW / w)));
+      ctx.font = s + "px 'Press Start 2P', monospace";
+    }
     ctx.textAlign = align || 'left';
     ctx.textBaseline = 'top';
     ctx.fillText(txt, x, y);
